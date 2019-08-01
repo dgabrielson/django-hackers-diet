@@ -1,0 +1,40 @@
+{% extends "diet/person_detail.html" %}
+
+{% block title %} {{ entry.who.name }} - BMI{% endblock %}
+
+{% block topbar_title %}BMI{% endblock %}
+{% block leftnav_links %}{% endblock %}
+{% block rightnav_links %}<a href="{% url 'hackersdiet-chart' id=person.id %}">Chart</a>{% endblock %}
+
+
+{% block page_content %}
+<span class="graytitle">{{ entry.date }}</span>
+
+<ul class="pageitem"> 
+<li>
+
+<table align="center" width="90%" style="font-size:125%;line-height:125%">
+    <tr>
+        <th>Weight</th>
+        <td align="right">{{ entry.weight|floatformat:1 }}</td>
+        <td align="right">{{ weightBmi|floatformat:1 }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="right" colspan="2">({{ weightBmiDesc }})</td>
+    </tr>
+    <tr>
+        <th>Trend</th>
+        <td align="right">{{ entry.trend|floatformat:1 }}</td>
+        <td align="right">{{ trendBmi|floatformat:1 }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="right" colspan="2">({{ trendBmiDesc }})</td>
+    </tr>
+</table>
+
+</ul>
+
+{% endblock %}
+

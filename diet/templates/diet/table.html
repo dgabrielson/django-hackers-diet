@@ -1,0 +1,40 @@
+{% extends "diet/person_detail.html" %}
+
+{% block title %} {{ person.name }} - Table {% endblock %}
+
+
+{% block topbar_title %}Table{% endblock %}
+{% block leftnav_links %}<a href="../stats/">Stats</a>{% endblock %}
+{% block rightnav_links %}{% endblock %}
+
+
+{% block page_content %}
+
+<ul class="pageitem"> 
+<li>
+
+{% if records %}
+    <table border="0" align="center" width="90%" style="font-size:125%;line-height:125%">
+        <tr>
+            <th>Date</th>
+            <th>Weight</th>
+            <th>Trend</th>
+            <th>Net</th>
+        </tr>
+        {% for D,W,T,N in records %}
+            <tr>
+                <td>{{ D }}</td>
+                <td>{{ W }}</td>
+                <td>{{ T }}</td>
+                <td>{{ N }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    Sorry, you have no records.
+{% endif %}
+
+</ul>
+
+{% endblock %}
+

@@ -1,0 +1,74 @@
+{% extends "site_base.html" %}
+
+{% block head_title %} Hacker's Diet {% endblock %}
+{% block body_title %} Hacker's Diet {% endblock %}
+
+{% block content %}
+{% endblock content %}
+
+
+{% block head %}
+<link rel="apple-touch-icon" href="{{ STATIC_URL}}diet/img/hackers_diet-icon.png"/>
+<link rel="apple-touch-startup-image" href="{{ STATIC_URL }}diet/img/startup.png"/>
+{% endblock %}
+
+{% block topbar_title %}Hacker's Diet{% endblock %}
+{% block home_url %}/diet{% endblock %}
+
+{% block body %}
+
+{% if pre_message %}
+<ul class="pageitem"> 
+		<li class="textbox">{{ pre_message }}
+</ul>
+{% endif %}
+
+<form method="POST" action=".">
+{% csrf_token %}
+<fieldset>
+<ul class="pageitem"> 
+{% for field in form %}
+    {% ifnotequal field.html_name 'who' %}
+			<li class="smallfield">	<span class="name">{{ field.label }}</span>{{ field }}
+			</li> 
+
+	{% else %}
+	    <li class="select">
+	    	{{ field }}
+	    	<span class="arrow"></span>
+			</li> 
+
+	{% endifnotequal %}
+{% endfor %}
+		</ul>
+</fieldset>
+
+<fieldset>
+<ul class="pageitem">
+<li class="button"><input type="submit" name="action" value="Save"></li>
+</ul>
+</fieldset>
+
+<fieldset>
+
+<ul class="pageitem">
+<li class="button">
+<input type="submit" name="action" value="Chart" {% if no_Chart %}disabled{% endif %}>
+</li>
+<li class="button">
+<input type="submit" name="action" value="Stats" {% if no_Stats %}disabled{% endif %}>
+</li>
+<li class="button">
+<input type="submit" name="action" value="Table" {% if no_Table %}disabled{% endif %}>
+</li>
+</ul>
+</fieldset>
+</form>
+
+{% if post_message %}
+<ul class="pageitem"> 
+		<li class="textbox">{{ post_message }}
+</ul>
+{% endif %}
+
+{% endblock %}

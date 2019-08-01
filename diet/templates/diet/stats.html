@@ -1,0 +1,71 @@
+{% extends "diet/person_detail.html" %}
+
+{% block title %} {{ person.name }} - Stats {% endblock %}
+
+{% block topbar_title %}Stats{% endblock %}
+{% block leftnav_links %}<a href="../chart/">Chart</a>{% endblock %}
+{% block rightnav_links %}<a href="../table/">Table</a>{% endblock %}
+
+
+{% block page_content %}
+
+<ul class="pageitem"> 
+<li><span class="name">
+{% if stats %}
+    <table align="center" width="90%" style="font-size:125%;line-height:125%">
+        <tr>
+            <td></td>
+            <th align="center"> lbs/week </th>
+            <th align="center"> kcals/day </th>
+        </tr>
+        {% if stats.week %}
+            <tr>
+                <th align="left">week</th>
+                <td align="center">{{ stats.lbs.week }}</td>
+                <td align="center">{{ stats.kcals.week }}</td>
+            </tr>
+        {% endif %}
+        {% if stats.fortnight %}
+            <tr>
+                <th align="left">fortnight</th>
+                <td align="center">{{ stats.lbs.fortnight }}</td>
+                <td align="center">{{ stats.kcals.fortnight }}</td>
+            </tr>
+        {% endif %}
+        {% if stats.month %}
+            <tr>
+                <th align="left">month</th>
+                <td align="center">{{ stats.lbs.month }}</td>
+                <td align="center">{{ stats.kcals.month }}</td>
+            </tr>
+        {% endif %}
+        {% if stats.quarter %}
+            <tr>
+                <th align="left">quarter</th>
+                <td align="center">{{ stats.lbs.quarter }}</td>
+                <td align="center">{{ stats.kcals.quarter }}</td>
+            </tr>
+        {% endif %}
+        {% if stats.halfyear %}
+            <tr>
+                <th align="left">6-mnths</th>
+                <td align="center">{{ stats.lbs.halfyear }}</td>
+                <td align="center">{{ stats.kcals.halfyear }}</td>
+            </tr>
+        {% endif %}
+        {% if stats.year %}
+            <tr>
+                <th align="left">year</th>
+                <td align="center">{{ stats.lbs.year }}</td>
+                <td align="center">{{ stats.kcals.year }}</td>
+            </tr>
+        {% endif %}
+    </table>
+{% else %}
+    Sorry, there are no statistics.
+{% endif %}
+</span></li>
+</ul>
+
+{% endblock %}
+

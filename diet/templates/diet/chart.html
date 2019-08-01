@@ -1,0 +1,50 @@
+{% extends "diet/person_detail.html" %}
+
+{% block title %} {{ person.name }} - Chart {% endblock %}
+
+{% block head %}
+{{ block.super }}
+
+<script type="text/javascript">
+    function setimage()
+    {
+        var mylist = document.getElementById("select_days")
+        var days = mylist.options[mylist.selectedIndex].value;
+        var img_src = "./img/" + days + "/";
+
+        scroll(0,0);
+        document.getElementById("chart").src = img_src;
+    }
+</script>
+
+{% endblock %}
+
+{% block topbar_title %}Chart{% endblock %}
+{% block leftnav_links %}<a href="../bmi/">BMI</a>{% endblock %}
+{% block rightnav_links %}<a href="../stats/">Stats</a>{% endblock %}
+
+
+{% block page_content %}
+
+<img id="chart" src="./img/{{ days }}/" height="{{ height }}" width="{{ width }}" border="0"/>
+<br>
+
+<span class="graytitle">View</span>
+<ul class="pageitem">
+ <li class="select">
+<select id="select_days" onchange="setimage()">
+    <option value="30" selected>Month</option>
+    <option value="90">Quarter</option>
+    <option value="180">Half-year</option>
+    <option value="365">Year</option>
+    <option value="730">Two Years</option>
+    <option value="0">All</option>
+</select>
+<span class="arrow"></span>
+			</li> </ul>
+
+
+
+
+{% endblock %}
+
